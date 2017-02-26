@@ -11,13 +11,14 @@ class Barmen {
         return this._wasSmsSent;
     }
 
-    pour(drinkName, volume, visitor) {
+    pour(drinkName, volume, visitor, erp) {
         if (!this._cupboard.hasDrink(drinkName, volume)) {
             this._smsService.send("Hello. We have run out of " + drinkName + ". Please buy several bottles.");
             this._wasSmsSent = this._smsService.wasCalled;
         }
 
         if (visitor.pay(5)){
+        	erp.registerSale(drinkName, volume, 5);
 			return this._cupboard.getDrink(drinkName, volume);
 		}
 		else {

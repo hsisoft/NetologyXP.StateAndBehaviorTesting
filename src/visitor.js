@@ -21,6 +21,7 @@ class Visitor {
     }
 
     pay(sum) {
+        console.info("Visitor pays")
         return true;
     }
 }
