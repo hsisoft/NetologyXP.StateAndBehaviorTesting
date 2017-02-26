@@ -12,6 +12,10 @@ class SmsServiceFake {
     get lastSentSms() {
         return this._lastSentSms;
     }
+
+    get wasCalled(){
+        return this._lastSentSms === '' ? false : true;
+    }
 }
 
 module.exports = SmsServiceFake;

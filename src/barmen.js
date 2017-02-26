@@ -14,7 +14,7 @@ class Barmen {
     pour(drinkName, volume, visitor) {
         if (!this._cupboard.hasDrink(drinkName, volume)) {
             this._smsService.send("Hello. We have run out of " + drinkName + ". Please buy several bottles.");
-            this._wasSmsSent = this._smsService.wasCalled();
+            this._wasSmsSent = this._smsService.wasCalled;
         }
 
         return this._cupboard.getDrink(drinkName, volume);
