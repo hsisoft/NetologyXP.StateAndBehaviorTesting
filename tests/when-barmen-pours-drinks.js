@@ -26,7 +26,7 @@ suite('When barmen pours drinks', function () {
             emptyCupboard = new CupboardFake();
             emptyCupboard.empty = true;
         });
-
+/*
         test('sms to buy drink is sent to boss', function () {
             let smsService = new SmsServiceFake();
             barmen = new Barmen(emptyCupboard, smsService);
@@ -49,14 +49,22 @@ suite('When barmen pours drinks', function () {
             smsServiceMock.verify();
             smsServiceMock.restore();
         });
+*/
+        test('barmen sends only one sms to buy a drink to boss', function () {
+			let smsService = new SmsServiceFake();
+			let smsServiceMock = sinon.mock(smsService);
 
-        test('barmen sends sms to buy drink to boss', function () {
-            let smsService = new SmsServiceFake();
-            barmen = new Barmen(emptyCupboard, smsService);
+			barmen = new Barmen(emptyCupboard, smsService);
 
-            barmen.pour("vodka", 100, visitor, erp);
+			smsServiceMock.expects("send")
+				.once()
+				.withArgs("Hello. We have run out of vodka. Please buy several bottles.");
 
-            assert.equal(true, barmen.wasSmsSent);
+			barmen.pour("vodka", 100, visitor, erp);
+			barmen.pour("vodka", 100, visitor, erp);
+
+			smsServiceMock.verify();
+			smsServiceMock.restore();
         });
     });
 
