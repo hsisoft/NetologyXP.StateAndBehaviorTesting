@@ -20,7 +20,7 @@ class Visitor {
         return this.totalDrinkVolume;
     }
 
-    pay() {
+    pay(sum) {
         return true;
     }
 }

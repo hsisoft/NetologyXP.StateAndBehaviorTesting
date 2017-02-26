@@ -17,7 +17,13 @@ class Barmen {
             this._wasSmsSent = this._smsService.wasCalled;
         }
 
-        return this._cupboard.getDrink(drinkName, volume);
+        if (visitor.pay(5)){
+			return this._cupboard.getDrink(drinkName, volume);
+		}
+		else {
+			console.error("Sorry, you haven't enough money.")
+        	return 0;
+		}
     }
 }
 
