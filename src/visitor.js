@@ -19,6 +19,10 @@ class Visitor {
     getTotallyDrunk() {
         return this.totalDrinkVolume;
     }
+
+    pay() {
+        return true;
+    }
 }
 
 module.exports = Visitor;
